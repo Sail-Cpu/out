@@ -36,13 +36,17 @@
         min-width: 100px;
         height: 100px;
         color: #fff;
+        cursor: pointer;
         svg{
             font-size: 45px;
         }
     }
 }
 .toggle-nav-bar-container{
-    float: right;
+    z-index: 1;
+    display: none;
+    position: absolute;
+    right: 0;
     .toogle-nav-bar-open{
         display: flex;
         justify-content: center;
@@ -50,6 +54,7 @@
         width: 100px;
         height: 100px;
         background-color: #7D9994;
+        cursor: pointer;
         svg{
             font-size: 50px;
         }
@@ -58,6 +63,9 @@
 }
 
 @media screen and (max-width: 920px) {
+    .toggle-nav-bar-container{
+        display: block;
+    }
     .nav-bar-container{
         display: none;
     }
