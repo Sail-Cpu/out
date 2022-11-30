@@ -41,3 +41,24 @@
         }
     }
 }
+.toggle-nav-bar-container{
+    float: right;
+    .toogle-nav-bar-open{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100px;
+        height: 100px;
+        background-color: #7D9994;
+        svg{
+            font-size: 50px;
+        }
+    }
+    
+}
+
+@media screen and (max-width: 920px) {
+    .nav-bar-container{
+        display: none;
+    }
+}
