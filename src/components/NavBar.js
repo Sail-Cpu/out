@@ -1,20 +1,32 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import { weatherContext } from "../context/WeatherContext";
 /* Icon */
 import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
 
 const NavBar = () => {
+
+    const[cityName, setCityName] = useState();
+
+    const{fetchCity} = useContext(weatherContext);
+
+    function submit(e){
+        e.preventDefault();
+        fetchCity(cityName);
+    }
+
+
     return(
         <>
             <div className="nav-bar-container">
-                <div className="nav-bar-top">
+                <form onSubmit={(e) => submit(e)} className="nav-bar-top">
                     <div className="nav-bar-top-search-container">
-                        <input type="text" placeholder="Location"></input>
+                        <input value={cityName} type="text" placeholder="Location" onChange={(e) => setCityName(e.target.value)}></input>
                     </div>
-                    <button>
+                    <button type="submit">
                         <SearchIcon />
                     </button>
-                </div>
+                </form>
             </div>
             <div className="toggle-nav-bar-container">
                 <div className="toogle-nav-bar-open">

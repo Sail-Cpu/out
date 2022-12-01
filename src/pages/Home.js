@@ -1,46 +1,49 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { weatherContext } from "../context/WeatherContext";
 import { Api } from "../api/Api";
 /*Component */
 import NavBar from "../components/NavBar";
+/* Image */
+import BackImageRain from '../assets/img/back-home-rain.png';
+import BackImageSunny from '../assets/img/back-home-sunny.png';
+import BackImageSnow from '../assets/img/back-home-snow.png';
 
 const Home = () => {
 
-    const[city, setCity] = useState();
-    const[weatherData, setWeatherData] = useState([]);
+    const{ city, weatherData } = useContext(weatherContext);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            setCity(await Api.fetchCityByName("lille"));
+    function chooseImage(weather){
+        if(weather > 17){
+            return BackImageSunny;
+        }else if(weather > 0 && weather < 17){
+            return BackImageRain;
+        }else{
+            return BackImageSnow;
         }
-        fetchData();
-    }, [])
-    useEffect(() => {
-        const fetchData = async () => {
-            if(city){
-                setWeatherData(await Api.fetchWeatherByCity(city.lat, city.lon)); 
-            }    
-        }
-        fetchData();
-    }, [city])
-
-    console.log(weatherData)
+    }
 
     return(
-        <div className="home-container">
-            <NavBar />
-            <div className="home">  
+        <>
+        {weatherData &&
+            <div className="home-container" style={{backgroundImage: `url(${chooseImage(weatherData.main?.temp)})`}}>
+                <NavBar />
+                <div className="home">  
                     <div className="home-top-container">
                         <span>Out.</span>
                     </div>
                     <div className="home-bottom-container">
-                        <h1>08°</h1>
+                        <h1>0{Math.ceil(weatherData.main?.temp)}°</h1>
                         <div>
-                            <h2>London</h2>
+                            <h2>{city.name}</h2>
                             <span>06:43 - mercredi 30 novembre</span>
                         </div>
                     </div>
+                </div>
             </div>
-        </div>
+        }
+        </>
+        
+       
     )
 }
 
