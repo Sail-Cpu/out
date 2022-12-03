@@ -8,13 +8,12 @@ const NavBar = () => {
 
     const[cityName, setCityName] = useState();
 
-    const{fetchCity} = useContext(weatherContext);
+    const{ fetchCity } = useContext(weatherContext);
 
     function submit(e){
         e.preventDefault();
         fetchCity(cityName);
     }
-
 
     return(
         <>

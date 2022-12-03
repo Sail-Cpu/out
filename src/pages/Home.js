@@ -7,14 +7,21 @@ import NavBar from "../components/NavBar";
 import BackImageRain from '../assets/img/back-home-rain.png';
 import BackImageSunny from '../assets/img/back-home-sunny.png';
 import BackImageSnow from '../assets/img/back-home-snow.png';
+import userEvent from "@testing-library/user-event";
 
 const Home = () => {
 
-    const{ city, weatherData } = useContext(weatherContext);
+    const{ getToken } = useContext(weatherContext);
+
+    const[we, setWe] = useState();
+
+    useEffect(() => {
+        setWe(getToken());
+    }, [getToken()])
 
     function chooseImage(weather){
         if(weather > 17){
-            return BackImageSunny;
+            return BackImageSunny; 
         }else if(weather > 0 && weather < 17){
             return BackImageRain;
         }else{
@@ -22,19 +29,21 @@ const Home = () => {
         }
     }
 
+    console.log(we)
+
     return(
-        <>
-        {weatherData &&
-            <div className="home-container" style={{backgroundImage: `url(${chooseImage(weatherData.main?.temp)})`}}>
+        <> 
+        {we &&
+            <div className="home-container" style={{backgroundImage: `url(${chooseImage(we.main?.temp)})`}}>
                 <NavBar />
                 <div className="home">  
                     <div className="home-top-container">
                         <span>Out.</span>
                     </div>
                     <div className="home-bottom-container">
-                        <h1>0{Math.ceil(weatherData.main?.temp)}°</h1>
+                        <h1>0{Math.ceil(we.main?.temp)}°</h1>
                         <div>
-                            <h2>{city.name}</h2>
+                            <h2>{we.name}</h2>
                             <span>06:43 - mercredi 30 novembre</span>
                         </div>
                     </div>

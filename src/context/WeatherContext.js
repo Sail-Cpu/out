@@ -5,31 +5,39 @@ export const weatherContext = createContext();
 
 export const WeatherContextProvider = (props) =>{
 
-    const[city, setCity] = useState("paris");
-    const[weatherData, setWeatherData] = useState([]) 
+    const[city, setCity] = useState();
 
     useEffect(() => {
-        fetchCity(city);
-    }, [])
+        if(!getToken()){
+            fetchCity("paris");
+            console.log("ok")
+        }
+    } , [])
+
+    useEffect(() => {
+        if(city){
+            fetchWeather(city);
+            console.log("oky")
+        }
+    }, [city])
 
     const fetchCity = async (cityName) => {
         setCity(await Api.fetchCityByName(cityName));
     }
 
-    useEffect(() => {
-        const fetchWeather = async (cityName) => {
-            if(city){
-                setWeatherData(await Api.fetchWeatherByCity(city.lat, city.lon));
-            }
-        }
-        fetchWeather();
-    }, [city])
+    const fetchWeather = async (city) => {
+        const data = await Api.fetchWeatherByCity(city.lat, city.lon);
+        sessionStorage.setItem("weatherData", JSON.stringify(data));
+    }
 
-    console.log(weatherData)
-    
+    function getToken() {
+        const weather = sessionStorage.getItem('weatherData');
+        const weatherToken = JSON.parse(weather);
+        return weatherToken;
+    }
 
     return(
-        <weatherContext.Provider value={{fetchCity, city, weatherData}}>
+        <weatherContext.Provider value={{ fetchCity, getToken }}>
             {props.children}
         </weatherContext.Provider>
     )
