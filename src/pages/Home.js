@@ -11,13 +11,13 @@ import userEvent from "@testing-library/user-event";
 
 const Home = () => {
 
-    const{ getToken } = useContext(weatherContext);
+    const{ getToken, weather } = useContext(weatherContext);
 
-    const[we, setWe] = useState();
+    const[weatherData, setWeatherData] = useState();
 
     useEffect(() => {
-        setWe(getToken());
-    }, [getToken()])
+        setWeatherData(getToken());
+    }, [weather])
 
     function chooseImage(weather){
         if(weather > 17){
@@ -28,22 +28,20 @@ const Home = () => {
             return BackImageSnow;
         }
     }
-
-    console.log(we)
-
+    
     return(
         <> 
-        {we &&
-            <div className="home-container" style={{backgroundImage: `url(${chooseImage(we.main?.temp)})`}}>
+        {weatherData &&
+            <div className="home-container" style={{backgroundImage: `url(${chooseImage(weatherData.main?.temp)})`}}>
                 <NavBar />
                 <div className="home">  
                     <div className="home-top-container">
                         <span>Out.</span>
                     </div>
                     <div className="home-bottom-container">
-                        <h1>0{Math.ceil(we.main?.temp)}°</h1>
+                        <h1>0{Math.ceil(weatherData.main?.temp)}°</h1>
                         <div>
-                            <h2>{we.name}</h2>
+                            <h2>{weatherData.name}</h2>
                             <span>06:43 - mercredi 30 novembre</span>
                         </div>
                     </div>

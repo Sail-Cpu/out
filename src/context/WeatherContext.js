@@ -6,6 +6,7 @@ export const weatherContext = createContext();
 export const WeatherContextProvider = (props) =>{
 
     const[city, setCity] = useState();
+    const[weather, setWeather] = useState();
 
     useEffect(() => {
         if(!getToken()){
@@ -27,6 +28,7 @@ export const WeatherContextProvider = (props) =>{
 
     const fetchWeather = async (city) => {
         const data = await Api.fetchWeatherByCity(city.lat, city.lon);
+        setWeather(data);
         sessionStorage.setItem("weatherData", JSON.stringify(data));
     }
 
@@ -37,7 +39,7 @@ export const WeatherContextProvider = (props) =>{
     }
 
     return(
-        <weatherContext.Provider value={{ fetchCity, getToken }}>
+        <weatherContext.Provider value={{ fetchCity, getToken, city, weather }}>
             {props.children}
         </weatherContext.Provider>
     )
