@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/out/static/css/main.8095984c.css",
+    "main.js": "/out/static/js/main.108ac657.js",
+    "static/media/back-home-sunny.png": "/out/static/media/back-home-sunny.1316e88811f9addf7e9f.png",
+    "static/media/back-home-snow.png": "/out/static/media/back-home-snow.8cfe4953dbc3ab196cf0.png",
+    "static/media/back-home-rain.png": "/out/static/media/back-home-rain.a9c90be3d647e87da26d.png",
+    "static/media/accessory.png": "/out/static/media/accessory.336160af163317e4b39e.png",
+    "static/media/jacket.png": "/out/static/media/jacket.6531a4a531fcf00ed689.png",
+    "static/media/sweat.png": "/out/static/media/sweat.f502eeaf75738600edf6.png",
+    "static/media/pants.png": "/out/static/media/pants.681ad54ff2de2b303b38.png",
+    "static/media/t-shirt.png": "/out/static/media/t-shirt.f17fccd742dd71d6edea.png",
+    "index.html": "/out/index.html",
+    "main.8095984c.css.map": "/out/static/css/main.8095984c.css.map",
+    "main.108ac657.js.map": "/out/static/js/main.108ac657.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8095984c.css",
+    "static/js/main.108ac657.js"
+  ]
+}
