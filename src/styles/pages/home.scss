@@ -80,3 +80,10 @@
           }
      }
  }
+ @media screen and(max-width: 560px) {
+     .home-container{
+         .home-bottom-container{
+             display: none;
+         }
+     }
+ }

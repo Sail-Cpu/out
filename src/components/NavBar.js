@@ -5,12 +5,12 @@ import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
 
 const NavBar = () => {
-
-    const[cityName, setCityName] = useState();
-
+    
     const{ fetchCity, weather, getToken } = useContext(weatherContext);
 
+    const[cityName, setCityName] = useState();
     const[weatherData, setWeatherData] = useState();
+    const[toogleModal, setToogleModal] = useState(false);
 
     useEffect(() => {
         setWeatherData(getToken());
@@ -20,8 +20,6 @@ const NavBar = () => {
         e.preventDefault();
         fetchCity(cityName);
     }
-
-    console.log(weatherData)
 
     return(
         <>
@@ -63,8 +61,48 @@ const NavBar = () => {
                     </div>
                 </div>
                 <div className="toggle-nav-bar-container">
-                    <div className="toogle-nav-bar-open">
+                    <div className="toogle-nav-bar-open" onClick={() => setToogleModal(!toogleModal)}>
                         <MenuIcon />
+                    </div>
+                    <div className="modal-nav-bar" style={{display: toogleModal ? 'flex' : 'none'}}>
+                        <form onSubmit={(e) => submit(e)} className="nav-bar-top">
+                            <div className="nav-bar-top-search-container">
+                                <input value={cityName} type="text" placeholder="Location" onChange={(e) => setCityName(e.target.value)}></input>
+                            </div>
+                            <button type="submit">
+                                <SearchIcon />
+                            </button>
+                        </form>
+                        <div className="modal-nav-weather-data-container">
+                            <div className="modal-nav-weather-data-name">
+                                <h1>{weatherData.name}</h1>
+                            </div>
+                            <div className="modal-nav-weather-data-deg">
+                                <h2>{weatherData.main.temp}</h2>
+                            </div>
+                            <div className="modal-nav-weather-data-bottom">
+                                <div className="modal-nav-weather-data-content">
+                                    <span>Nuageux</span>
+                                    <span>{weatherData.clouds.all}%</span>
+                                </div>
+                                <div className="modal-nav-weather-data-content">
+                                    <span>Humidité</span>
+                                    <span>{weatherData.main.humidity}%</span>
+                                </div>
+                                <div className="modal-nav-weather-data-content">
+                                    <span>Temperature min</span>
+                                    <span>{weatherData.main.temp_min}°c</span>
+                                </div>
+                                <div className="modal-nav-weather-data-content">
+                                    <span>Temperature max</span>
+                                    <span>{weatherData.main.temp_max}°c</span>
+                                </div>
+                                <div className="modal-nav-weather-data-content">
+                                    <span>Description</span>
+                                    <span>{weatherData.weather[0].description}</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </>

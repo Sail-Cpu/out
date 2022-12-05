@@ -45,7 +45,6 @@ const Home = () => {
                         <h1>0{Math.ceil(weatherData.main?.temp)}°</h1>
                         <div>
                             <h2>{weatherData.name}</h2>
-                            <span>06:43 - mercredi 30 novembre</span>
                         </div>
                     </div>
                 </div>

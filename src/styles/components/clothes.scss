@@ -47,3 +47,11 @@
         }
     }
 }
+
+@media screen and(max-width: 560px) {
+    .clothes-container{
+        .clothe{
+            flex-direction: column;
+        }
+    }
+}

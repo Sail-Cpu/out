@@ -75,6 +75,7 @@
     position: absolute;
     right: 0;
     .toogle-nav-bar-open{
+        z-index: 1;
         display: flex;
         justify-content: center;
         align-items: center;

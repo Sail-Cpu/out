@@ -1,0 +1,69 @@
+.modal-nav-bar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: -1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(16, 15, 15);
+    animation: animNav 0.7s ease-out;
+    .nav-bar-top{
+        display: flex;
+        width: 300px;
+        .nav-bar-top-search-container{
+            width: -webkit-fill-available;
+        }
+        input{
+            font-size: 18px;
+            box-sizing: border-box;
+            width: 100%;
+            height: 100%;
+            background: none;
+            border: none;
+            border-bottom: 1px solid #fff;
+            color: #fff;
+            outline: none;
+        }
+        button{
+            box-sizing: border-box;
+            height: 60px;
+            width: 80px;
+            background-color: #7D9994;
+            color: #fff;
+            cursor: pointer;
+        }
+    }
+    .modal-nav-weather-data-container{
+        text-align: center;
+        margin-top: 30px;
+        width: 340px;
+        .modal-nav-weather-data-name{
+            text-align: center;
+            font-size: 20px;
+        }
+        .modal-nav-weather-data-deg{
+            font-size: 14px;
+        }
+        .modal-nav-weather-data-bottom{
+            width: 100%;
+            .modal-nav-weather-data-content{
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                height: 35px;
+            }
+        }
+    }
+}
+
+@keyframes animNav {
+    from{
+        height: 0vh;
+    }to{
+        height: 100vh;
+    }
+}
