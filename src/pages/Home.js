@@ -3,11 +3,11 @@ import { weatherContext } from "../context/WeatherContext";
 import { Api } from "../api/Api";
 /*Component */
 import NavBar from "../components/NavBar";
+import Clothes from "../components/Clothes";
 /* Image */
 import BackImageRain from '../assets/img/back-home-rain.png';
 import BackImageSunny from '../assets/img/back-home-sunny.png';
 import BackImageSnow from '../assets/img/back-home-snow.png';
-import userEvent from "@testing-library/user-event";
 
 const Home = () => {
 
@@ -20,7 +20,7 @@ const Home = () => {
     }, [weather])
 
     function chooseImage(weather){
-        if(weather > 17){
+        if(weather >= 17){
             return BackImageSunny; 
         }else if(weather > 0 && weather < 17){
             return BackImageRain;
@@ -37,6 +37,9 @@ const Home = () => {
                 <div className="home">  
                     <div className="home-top-container">
                         <span>Out.</span>
+                    </div>
+                    <div className="clothes-container">
+                        <Clothes />
                     </div>
                     <div className="home-bottom-container">
                         <h1>0{Math.ceil(weatherData.main?.temp)}°</h1>
