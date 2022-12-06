@@ -10,7 +10,7 @@ function App() {
       <WeatherContextProvider>
         <BrowserRouter> 
           <Routes>
-            <Route path="/" element={<Home />}></Route>
+            <Route path="out/" element={<Home />}></Route>
           </Routes>
         </BrowserRouter>
       </WeatherContextProvider>
